@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://evgensev1985-glitch.github.io/maina-manipulator/sitemap.xml
