@@ -7,7 +7,8 @@
 
     const CONFIG = {
         scrollOffset: 80,
-        scrollTopThreshold: 300
+        scrollTopThreshold: 300,
+        animationThreshold: 100
     };
 
     const DOM = {
@@ -18,12 +19,14 @@
         copyLinkBtn: null,
         scrollTopBtn: null,
         header: null,
-        faqItems: null
+        faqItems: null,
+        fadeElements: null
     };
 
     function init() {
         cacheDOM();
         bindEvents();
+        initScrollAnimations();
     }
 
     function cacheDOM() {
@@ -35,6 +38,7 @@
         DOM.scrollTopBtn = document.getElementById('scrollTopBtn');
         DOM.header = document.querySelector('.header');
         DOM.faqItems = document.querySelectorAll('.faq-item');
+        DOM.fadeElements = document.querySelectorAll('.service-card, .advantage-item, .gallery-item, .process-step, .testimonial-card, .faq-item');
     }
 
     function bindEvents() {
@@ -128,6 +132,28 @@
     function handleScroll() {
         if (DOM.scrollTopBtn) DOM.scrollTopBtn.classList.toggle('visible', window.scrollY > CONFIG.scrollTopThreshold);
         if (DOM.header) DOM.header.classList.toggle('scrolled', window.scrollY > 50);
+        checkFadeElements();
+    }
+
+    // Scroll animations - fade in elements on scroll
+    function initScrollAnimations() {
+        // Add fade-in class to elements
+        DOM.fadeElements.forEach(el => {
+            el.classList.add('fade-in');
+        });
+        // Check on initial load
+        checkFadeElements();
+    }
+
+    function checkFadeElements() {
+        const triggerBottom = window.innerHeight * 0.85;
+        
+        DOM.fadeElements.forEach(el => {
+            const box = el.getBoundingClientRect();
+            if (box.top < triggerBottom) {
+                el.classList.add('visible');
+            }
+        });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
