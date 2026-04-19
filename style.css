@@ -510,41 +510,45 @@ ul { list-style: none; padding: 0; margin: 0; }
 
 /* Header improvements - distinguish from browser window */
 
-/* Share Button - Arrow style - Enhanced */
+/* Share Button - Modern gradient style */
 .share-btn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all var(--transition);
-  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  font-size: 18px;
 }
 .share-btn:hover {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  transform: rotate(45deg) scale(1.1);
-  box-shadow: 0 4px 15px rgba(26, 115, 232, 0.5);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+.share-btn:active {
+  transform: translateY(0);
 }
 .share-btn i {
-  font-size: 16px;
+  font-size: 18px;
   transition: transform var(--transition);
 }
 
-/* Share Dropdown - Gray menu - Enhanced */
+/* Share Dropdown - Modern style */
 .share-container { position: relative; display: inline-block; }
 .share-dropdown { 
   position: absolute; 
   top: calc(100% + 10px); 
   right: 0; 
-  background: linear-gradient(180deg, #6c757d, #5a6268); 
+  background: linear-gradient(180deg, #ffffff, #f5f7fa); 
   border-radius: 16px; 
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
-  padding: 10px 0; 
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15); 
+  padding: 8px 0; 
   min-width: 240px; 
   z-index: 1002; 
   opacity: 0; 
@@ -552,6 +556,7 @@ ul { list-style: none; padding: 0; margin: 0; }
   transform: translateY(-15px) scale(0.95); 
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   backdrop-filter: blur(10px);
+  border: 1px solid #e8ecf1;
 }
 .share-dropdown::before {
   content: '';
@@ -560,8 +565,10 @@ ul { list-style: none; padding: 0; margin: 0; }
   right: 20px;
   width: 12px;
   height: 12px;
-  background: #6c757d;
+  background: #ffffff;
   transform: rotate(45deg);
+  border-left: 1px solid #e8ecf1;
+  border-top: 1px solid #e8ecf1;
 }
 .share-dropdown.active { 
   opacity: 1; 
@@ -573,7 +580,7 @@ ul { list-style: none; padding: 0; margin: 0; }
   align-items: center; 
   gap: 12px; 
   padding: 12px 18px; 
-  color: white; 
+  color: #333; 
   text-decoration: none; 
   font-size: 14px; 
   transition: all 0.2s; 
@@ -592,21 +599,28 @@ ul { list-style: none; padding: 0; margin: 0; }
   top: 0;
   bottom: 0;
   width: 0;
-  background: rgba(255,255,255,0.1);
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), transparent);
   transition: width 0.2s;
 }
 .share-option:hover::before {
   width: 100%;
 }
 .share-option:hover { 
-  background: rgba(255,255,255,0.2); 
+  background: rgba(102, 126, 234, 0.08); 
   padding-left: 22px;
+  color: #667eea;
 }
 .share-option i { 
   width: 22px; 
   text-align: center; 
-  font-size: 16px;
+  font-size: 18px;
 }
+
+/* Social network icon colors */
+.share-option .fa-vk { color: #0077FF; }
+.share-option .fa-telegram-plane { color: #24A1DE; }
+.share-option .fa-odnoklassniki { color: #F58220; }
+.share-option .fa-link { color: #667eea; }
 
 /* Scroll Top & Sticky CTA - Enhanced */
 .scroll-top, .sticky-cta {
@@ -751,7 +765,7 @@ ul { list-style: none; padding: 0; margin: 0; }
   .header-contacts {
     order: 3;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #e0e4e8;
@@ -759,7 +773,7 @@ ul { list-style: none; padding: 0; margin: 0; }
   
   /* Improve share dropdown position on mobile */
   .share-dropdown {
-    right: -50px;
+    right: -60px;
     min-width: 200px;
   }
   
@@ -803,7 +817,7 @@ ul { list-style: none; padding: 0; margin: 0; }
   .logo { order: 1; flex-grow: 1; }
   .logo a { font-size: 16px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
   .burger-menu { order: 2; }
-  .header-contacts { order: 3; width: 100%; justify-content: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e4e8; }
+  .header-contacts { order: 3; width: 100%; justify-content: flex-end; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e4e8; }
   .sticky-cta {
     padding: 10px 16px;
     font-size: 13px;
@@ -877,8 +891,13 @@ img {
 /* Fix share dropdown overflow on small screens */
 @media (max-width: 400px) {
   .share-dropdown {
-    right: -80px;
+    right: -70px;
     min-width: 180px;
+  }
+  
+  /* Keep share button aligned to right on very small screens */
+  .header-contacts {
+    justify-content: flex-end;
   }
 }
 
